@@ -1,9 +1,15 @@
 import {
   AfterViewInit,
-  Component
+  Component,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
+import {
+  CommonModule,
+  isPlatformBrowser
+} from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -27,7 +33,17 @@ export class Home implements AfterViewInit {
     'https://t.me/Elzeinhom';
 
 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+
   ngAfterViewInit(): void {
+
+    // Run only in browser
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
 
     const elements =
       document.querySelectorAll('.reveal');
@@ -56,9 +72,7 @@ export class Home implements AfterViewInit {
 
 
     elements.forEach((element) => {
-
       observer.observe(element);
-
     });
 
   }

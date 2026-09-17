@@ -1,9 +1,15 @@
 import {
   AfterViewInit,
-  Component
+  Component,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
+import {
+  CommonModule,
+  isPlatformBrowser
+} from '@angular/common';
+
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -18,25 +24,41 @@ import { RouterModule } from '@angular/router';
 })
 export class About implements AfterViewInit {
 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+
   ngAfterViewInit(): void {
-    const elements = document.querySelectorAll('.reveal');
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+    // Run only in browser
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
 
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
+    const elements =
+      document.querySelectorAll('.reveal');
 
-            observer.unobserve(entry.target);
-          }
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
 
-        });
-      },
-      {
-        threshold: 0.12
-      }
-    );
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add('show');
+
+              observer.unobserve(entry.target);
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
 
     elements.forEach((element) => {
       observer.observe(element);

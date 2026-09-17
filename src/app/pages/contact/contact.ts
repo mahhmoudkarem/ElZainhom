@@ -1,12 +1,16 @@
 import {
   AfterViewInit,
-  Component
+  Component,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
 
+import { isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './contact.html',
   styleUrl: './contact.css'
@@ -39,11 +43,21 @@ export class Contact implements AfterViewInit {
     'https://kwekly.com/Ahmedzeinhom';
 
 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
+
+
   // ================================
   // Scroll Reveal Animation
   // ================================
 
   ngAfterViewInit(): void {
+
+    // Run this code only in the browser
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
 
     const elements =
       document.querySelectorAll('.reveal');
@@ -70,9 +84,7 @@ export class Contact implements AfterViewInit {
       );
 
     elements.forEach((element) => {
-
       observer.observe(element);
-
     });
   }
 
