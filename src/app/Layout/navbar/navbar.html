@@ -1,0 +1,428 @@
+<nav
+  class="bg-white border-b border-gray-200 sticky top-0 z-50"
+  dir="rtl"
+>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Navbar Main -->
+    <div class="h-20 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a
+        routerLink="/home"
+        (click)="closeMenu()"
+        class="flex items-center"
+      >
+
+        <img
+          src="images/logo-navbar.png"
+          alt="الزينهم للدواجن"
+          class="h-16 md:h-[70px] w-auto object-contain"
+        >
+
+      </a>
+
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8">
+
+        <!-- الرئيسية -->
+        <a
+          routerLink="/home"
+          routerLinkActive="text-[#F20018] font-bold"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="flex items-center gap-2 text-gray-800 hover:text-[#F20018] transition-colors duration-200"
+        >
+
+          <i class="fa-solid fa-house"></i>
+
+          <span>
+            الرئيسية
+          </span>
+
+        </a>
+
+
+        <!-- من نحن -->
+        <a
+          routerLink="/about"
+          routerLinkActive="text-[#F20018] font-bold"
+          class="flex items-center gap-2 text-gray-800 hover:text-[#F20018] transition-colors duration-200"
+        >
+
+          <i class="fa-solid fa-users"></i>
+
+          <span>
+            من نحن
+          </span>
+
+        </a>
+
+
+        <!-- منتجاتنا -->
+        <div class="relative">
+
+          <button
+            type="button"
+            (click)="toggleProducts()"
+            class="flex items-center gap-2 text-gray-800 hover:text-[#F20018] transition-colors duration-200"
+          >
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <span>
+              منتجاتنا
+            </span>
+
+            <i
+              class="fa-solid text-xs transition-transform duration-200"
+              [class.fa-chevron-down]="!isProductsOpen"
+              [class.fa-chevron-up]="isProductsOpen"
+            ></i>
+
+          </button>
+
+
+          <!-- Products Dropdown -->
+          @if (isProductsOpen) {
+
+            <div
+              class="absolute right-0 top-full mt-4 w-56 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden"
+            >
+
+              <!-- كتاكيت -->
+              <a
+                routerLink="/chicks"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-red-50 hover:text-[#F20018] transition-colors"
+              >
+
+                <i class="fa-solid fa-egg w-5 text-[#F20018]"></i>
+
+                <span>
+                  كتاكيت
+                </span>
+
+              </a>
+
+
+              <!-- فراخ -->
+              <a
+                routerLink="/chicken"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-red-50 hover:text-[#F20018] transition-colors"
+              >
+
+                <i class="fa-solid fa-drumstick-bite w-5 text-[#F20018]"></i>
+
+                <span>
+                  فراخ
+                </span>
+
+              </a>
+
+
+              <!-- أعلاف -->
+              <a
+                routerLink="/feed"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-red-50 hover:text-[#F20018] transition-colors"
+              >
+
+                <i class="fa-solid fa-wheat-awn w-5 text-[#F20018]"></i>
+
+                <span>
+                  أعلاف
+                </span>
+
+              </a>
+
+
+              <!-- أدوية -->
+              <a
+                routerLink="/medicines"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-5 py-4 text-gray-700 hover:bg-red-50 hover:text-[#F20018] transition-colors"
+              >
+
+                <i class="fa-solid fa-pills w-5 text-[#F20018]"></i>
+
+                <span>
+                  أدوية
+                </span>
+
+              </a>
+
+            </div>
+
+          }
+
+        </div>
+
+
+        <!-- مقارنة الأسعار -->
+        <a
+          routerLink="/compare-prices"
+          routerLinkActive="text-[#F20018] font-bold"
+          class="flex items-center gap-2 text-gray-800 hover:text-[#F20018] transition-colors duration-200"
+        >
+
+          <i class="fa-solid fa-scale-balanced"></i>
+
+          <span>
+            مقارنة الأسعار
+          </span>
+
+        </a>
+
+
+        <!-- تواصل معنا -->
+        <a
+          routerLink="/contact"
+          routerLinkActive="text-[#F20018] font-bold"
+          class="flex items-center gap-2 text-gray-800 hover:text-[#F20018] transition-colors duration-200"
+        >
+
+          <i class="fa-solid fa-phone"></i>
+
+          <span>
+            تواصل معنا
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- Desktop Contact Button -->
+      <div class="hidden md:block">
+
+        <a
+          href="tel:01099111174"
+          class="flex items-center gap-2 bg-[#F20018] hover:bg-[#d90015] text-white px-5 py-3 rounded-xl font-bold transition-colors duration-200"
+        >
+
+          <i class="fa-solid fa-phone"></i>
+
+          <span dir="ltr">
+            01099111174
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- Mobile Menu Button -->
+      <button
+        title="menu"
+        type="button"
+        (click)="toggleMenu()"
+        class="md:hidden w-11 h-11 rounded-xl bg-gray-100 text-black hover:bg-[#F20018] hover:text-white flex items-center justify-center transition-colors duration-200"
+        [attr.aria-label]="isMenuOpen ? 'إغلاق القائمة' : 'فتح القائمة'"
+      >
+
+        <i
+          class="fa-solid text-xl"
+          [class.fa-bars]="!isMenuOpen"
+          [class.fa-xmark]="isMenuOpen"
+        ></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- Mobile Menu -->
+    @if (isMenuOpen) {
+
+      <div class="md:hidden border-t border-gray-200 py-4">
+
+        <!-- الرئيسية -->
+        <a
+          routerLink="/home"
+          (click)="closeMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-800 hover:bg-red-50 hover:text-[#F20018] transition"
+        >
+
+          <i class="fa-solid fa-house w-5"></i>
+
+          <span>
+            الرئيسية
+          </span>
+
+        </a>
+
+
+        <!-- من نحن -->
+        <a
+          routerLink="/about"
+          (click)="closeMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-800 hover:bg-red-50 hover:text-[#F20018] transition"
+        >
+
+          <i class="fa-solid fa-users w-5"></i>
+
+          <span>
+            من نحن
+          </span>
+
+        </a>
+
+
+        <!-- منتجاتنا -->
+        <div>
+
+          <button
+            type="button"
+            (click)="toggleProducts()"
+            class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-800 hover:bg-red-50 hover:text-[#F20018] transition"
+          >
+
+            <span class="flex items-center gap-3">
+
+              <i class="fa-solid fa-box-open w-5"></i>
+
+              <span>
+                منتجاتنا
+              </span>
+
+            </span>
+
+
+            <i
+              class="fa-solid text-xs"
+              [class.fa-chevron-down]="!isProductsOpen"
+              [class.fa-chevron-up]="isProductsOpen"
+            ></i>
+
+          </button>
+
+
+          <!-- Mobile Products -->
+          @if (isProductsOpen) {
+
+            <div
+              class="mr-5 mt-1 border-r-2 border-[#F20018] pr-3"
+            >
+
+              <!-- كتاكيت -->
+              <a
+                routerLink="/chicks"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#F20018] transition"
+              >
+
+                <i class="fa-solid fa-egg w-5"></i>
+
+                كتاكيت
+
+              </a>
+
+
+              <!-- فراخ -->
+              <a
+                routerLink="/chicken"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#F20018] transition"
+              >
+
+                <i class="fa-solid fa-drumstick-bite w-5"></i>
+
+                فراخ
+
+              </a>
+
+
+              <!-- أعلاف -->
+              <a
+                routerLink="/feed"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#F20018] transition"
+              >
+
+                <i class="fa-solid fa-wheat-awn w-5"></i>
+
+                أعلاف
+
+              </a>
+
+
+              <!-- أدوية -->
+              <a
+                routerLink="/medicines"
+                (click)="closeMenu()"
+                class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:text-[#F20018] transition"
+              >
+
+                <i class="fa-solid fa-pills w-5"></i>
+
+                أدوية
+
+              </a>
+
+            </div>
+
+          }
+
+        </div>
+
+
+        <!-- مقارنة الأسعار -->
+        <a
+          routerLink="/compare-prices"
+          (click)="closeMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-800 hover:bg-red-50 hover:text-[#F20018] transition"
+        >
+
+          <i class="fa-solid fa-scale-balanced w-5"></i>
+
+          <span>
+            مقارنة الأسعار
+          </span>
+
+        </a>
+
+
+        <!-- تواصل معنا -->
+        <a
+          routerLink="/contact"
+          (click)="closeMenu()"
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-800 hover:bg-red-50 hover:text-[#F20018] transition"
+        >
+
+          <i class="fa-solid fa-phone w-5"></i>
+
+          <span>
+            تواصل معنا
+          </span>
+
+        </a>
+
+
+        <!-- Mobile Phone -->
+        <div class="mt-3 pt-3 border-t border-gray-200">
+
+          <a
+            href="tel:01099111174"
+            class="mx-4 flex items-center justify-center gap-3 bg-[#F20018] hover:bg-[#d90015] text-white px-5 py-3 rounded-xl font-bold transition"
+          >
+
+            <i class="fa-solid fa-phone"></i>
+
+            <span dir="ltr">
+              01099111174
+            </span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</nav>

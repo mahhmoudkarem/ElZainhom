@@ -1,0 +1,64 @@
+/* About page motion + daily prices ticker */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: .12s; }
+.reveal-delay-2 { transition-delay: .24s; }
+.reveal-delay-3 { transition-delay: .36s; }
+
+.price-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  gap: 22px;
+  animation: priceTicker 35s linear infinite;
+}
+
+.price-track:hover {
+  animation-play-state: paused;
+}
+
+.price-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 13px;
+}
+
+.price-item strong {
+  color: #fff;
+  font-weight: 800;
+  background: rgba(242, 13, 24, .15);
+  padding: 3px 9px;
+  border-radius: 6px;
+}
+
+.price-separator {
+  color: #F20D18;
+  font-size: 18px;
+}
+
+@keyframes priceTicker {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .price-track { animation: none; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

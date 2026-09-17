@@ -1,0 +1,221 @@
+/* =====================================================
+   Scroll Reveal
+===================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   Reveal Delays
+===================================================== */
+
+.reveal-delay-1 {
+  transition-delay: 0.12s;
+}
+
+
+.reveal-delay-2 {
+  transition-delay: 0.24s;
+}
+
+
+.reveal-delay-3 {
+  transition-delay: 0.36s;
+}
+
+
+/* =====================================================
+   Contact Cards
+===================================================== */
+
+.contact-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.contact-card:hover {
+  transform: translateY(-6px);
+}
+
+
+/* =====================================================
+   Price Ticker
+===================================================== */
+
+.price-track {
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+  height: 100%;
+
+  gap: 22px;
+
+  animation:
+    priceTicker 35s linear infinite;
+}
+
+
+/* Pause ticker when hovering */
+
+.price-track:hover {
+  animation-play-state: paused;
+}
+
+
+/* =====================================================
+   Price Item
+===================================================== */
+
+.price-item {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+
+  color: #ffffff;
+
+  font-size: 13px;
+}
+
+
+/* Icons */
+
+.price-item i {
+  color: #F20D18;
+
+  font-size: 14px;
+}
+
+
+/* Price */
+
+.price-item strong {
+  color: #ffffff;
+
+  font-weight: 800;
+
+  background: rgba(242, 13, 24, 0.18);
+
+  padding: 3px 9px;
+
+  border-radius: 6px;
+}
+
+
+/* =====================================================
+   Separator
+===================================================== */
+
+.price-separator {
+  color: #F20D18;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  user-select: none;
+}
+
+
+/* =====================================================
+   Ticker Animation
+===================================================== */
+
+@keyframes priceTicker {
+
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(50%);
+  }
+
+}
+
+
+/* =====================================================
+   Form Focus
+===================================================== */
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+
+/* =====================================================
+   Reduced Motion
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .price-track {
+    animation: none;
+  }
+
+
+  .reveal {
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+  }
+
+
+  .contact-card {
+    transition: none;
+  }
+
+}
+
+
+/* =====================================================
+   Mobile
+===================================================== */
+
+@media (max-width: 640px) {
+
+  .price-track {
+    gap: 16px;
+
+    animation-duration: 28s;
+  }
+
+
+  .price-item {
+    font-size: 12px;
+  }
+
+
+  .price-item strong {
+    padding: 2px 7px;
+  }
+
+
+  .price-separator {
+    font-size: 16px;
+  }
+
+}
